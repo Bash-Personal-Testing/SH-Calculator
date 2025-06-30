@@ -14,9 +14,10 @@ if [[ -z "$(ls -A "$dir")" ]]; then
 fi
 
 mapfile files < <(find ./"$dir" -maxdepth 1 -type f | grep -v "^./\." )
-for file in "${files[@]}"; do
-    filename=$(echo "$file" | xargs basename)
-    currentExtension=$(echo "$file" | xargs basename | cut -d "." -f 2 )
+for path in "${files[@]}"; do
+    filename=$(echo "$path" | xargs basename)
+    currentExtension=$(echo "$path" | xargs basename | cut -d "." -f 2- )
+    echo "$currentExtension"
     
     mkdir -p "$dir"/"$currentExtension"
     mv -v "$dir/$filename" "$dir/$currentExtension/$filename"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-declare extensions=( "txt" "py" "ts" "doc")
+declare extensions=( ".txt" ".py" ".ts" ".docx" ".tar.gz")
 
 read -r -p "How many of each filetype: " n
 rm -r parent
@@ -11,6 +11,6 @@ for ext in "${extensions[@]}";
 do
     for name in $(seq "$n");
     do
-        touch "$name.$ext"
+        touch "$name$ext"
     done
 done
